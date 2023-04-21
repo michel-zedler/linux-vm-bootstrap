@@ -31,7 +31,6 @@ cd ~/.ssh
 ssh-keygen -t ed25519 -C $sshComment -f $sshPrivateKeyName || true
 chmod 600 $sshPrivateKeyName $sshPublicKeyName
 sshPublicKey="$(cat $sshPublicKeyName)"
-ln -s
 
 cat <<END >&2
 
