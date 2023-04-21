@@ -16,7 +16,7 @@ sudo pacman -S --needed spice-vdagent xf86-video-qxl
 # see https://bugzilla.redhat.com/show_bug.cgi?id=1951580
 # see https://forum.endeavouros.com/t/kde-refuses-to-start-spice-vdagent-on-login/33579
 
-sudo systemctl status spice-vdagentd
+sudo systemctl status spice-vdagentd || true
 sudo sed -i.bak '/X-GNOME-Autostart-Phase/d' /etc/xdg/autostart/spice-vdagent.desktop
 
 # generate ssh keypair
