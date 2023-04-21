@@ -12,8 +12,24 @@ sudo apt-get upgrade
 
 sudo apt-get install git spice-vdagent
 
-# run common/shared setup steps
+# generate ssh keypair
 
-. common/ssh-keypair.bash
+sshComment="$(whoami)@$(hostname)_$(date -I)"
+sshPrivateKeyName="${sshComment}_key"
+sshPublicKeyName="${sshPrivateKeyName}.pub"
+
+mkdir -p ~/.ssh
+cd ~/.ssh
+ssh-keygen -t ed25519 -C $sshComment -f $sshPrivateKeyName || true
+sshPublicKey="$(cat $sshPublicKeyName)"
+
+cat <<END >&2
+
+Public ssh key:
+========================================================================================================================
+$sshPublicKey
+========================================================================================================================
+
+END
 
 echo "Please reboot guest"
