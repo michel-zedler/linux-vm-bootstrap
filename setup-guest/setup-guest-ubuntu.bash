@@ -15,13 +15,16 @@ sudo apt-get install git spice-vdagent
 # generate ssh keypair
 
 sshComment="$(whoami)@$(hostname)_$(date -I)"
-sshPrivateKeyName="${sshComment}_key"
+sshPrivateKeyName="id_ed25519"
 sshPublicKeyName="${sshPrivateKeyName}.pub"
 
 mkdir -p ~/.ssh
+chmod 700 ~/.ssh
 cd ~/.ssh
 ssh-keygen -t ed25519 -C $sshComment -f $sshPrivateKeyName || true
+chmod 600 $sshPrivateKeyName $sshPublicKeyName
 sshPublicKey="$(cat $sshPublicKeyName)"
+ln -s
 
 cat <<END >&2
 
